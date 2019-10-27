@@ -1,0 +1,23 @@
+@startuml
+|Serveur|
+start
+:Lancement;
+|#AntiqueWhite|Client|
+:Recherche du serveur;
+|Serveur|
+:Réponse serveur trouvé (one);
+|Client|
+if (chercher partie) then (oui)
+  :GET game/list;
+  |Serveur|
+  :Json nb parties+infos (one);
+  |Client|
+  :Choisir partie;
+else (non)
+    :POST game/create;
+endif
+:POST game/join;
+|Serveur|
+:Réponse join (one);
+stop
+@enduml

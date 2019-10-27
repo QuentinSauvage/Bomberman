@@ -1,0 +1,49 @@
+@startuml
+|Serveur|
+|Client|
+start
+:POST player/move;
+|Serveur|
+:POST player/position/update (all);
+|Client|
+:POST attack/bomb;
+|Serveur|
+if (poseur) then (oui)
+  :Confirmation (one);
+else (non)
+  :POST attack/newbomb (all but one);
+endif
+|Client|
+if (remote) then (oui)
+  :POST attack/remote/go;
+else (non)
+endif
+|Serveur|
+if(explosion) then (oui)
+  :POST attack/explose (all);
+else (non)
+endif
+if(joueur touché) then (oui)
+  :POST attack/affect (one);
+else (non)
+endif
+|Client|
+if(objet) then (oui)
+  :POST object/new;
+else (non)
+endif
+|Serveur|
+if(ramasseur) then (oui)
+  :Réponse objet (one);
+else (non)
+  :Disparition objet (all but one);
+endif
+if(mort) then (oui)
+  :Avertir (all);
+  if(vainqueur) then (oui)
+    :Fin de partie;
+    stop
+  endif
+endif
+stop
+@enduml

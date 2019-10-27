@@ -1,0 +1,10 @@
+char * myErr[] = { "No Error",
+                   "Error when creating socket",
+                   "Error when binding",
+                   "Error when listening",
+                   "Error when accepting",
+                   "Error when receiving",
+                   "Error when sending",
+                   "Impossible to read map",
+                   "No map dir",
+                   "Maximum connection reached" };
