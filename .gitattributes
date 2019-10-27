@@ -1,0 +1,9 @@
+*.html linguist-vendored
+*.css linguist-vendored
+*.js linguist-vendored
+*.tex linguist-vendored
+*.aux linguist-vendored
+*.xml linguist-vendored
+*.prefs linguist-vendored
+*.txt linguist-vendored
+*.gitignore linguist-vendored
