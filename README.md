@@ -8,9 +8,9 @@ Lorsque le joueur cherche un serveur, il reçoit la liste des serveurs disponibl
 Le jeu ne comporte aucune animation, donc l'élément _speed_ du joueur n'est pas pris en compte. Concernant le protocole, nous avons décidé de ne pas utiliser l'élément _chain_ lors de l'explosion de plusieurs bombes dues à une autre explosion.
 A la place, nous avons préféré renvoyer un message d'explosion au client. 
 
-## Lancer le projet
+## Lancer le projet (Serveur Linux only)
 
-Lancer _./server_ en ligne de commandes pour le serveur, et double cliquer sur run.bat pour lancer le client.
+Lancer _./run_server_ en ligne de commandes pour le serveur, et double cliquer sur run.bat pour lancer le client.
 
 ## Architecture client
 
