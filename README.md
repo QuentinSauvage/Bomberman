@@ -1,22 +1,27 @@
+# Bomberman
 Projet réalisé en 1ère année de master informatique.
 
-__Présentation du projet :__
+## Présentation du projet
 
 L'utilisateur lance l'application et arrive sur le menu. Il peut soit consulter les options (qui sont vides), soit changer les contrôles du jeu, soit chercher un serveur.
 Lorsque le joueur cherche un serveur, il reçoit la liste des serveurs disponibles, en sélectionne un, puis choisis ensuite de créer ou rejoindre une partie sur ce serveur, après quoi la partie se lance.
 Le jeu ne comporte aucune animation, donc l'élément _speed_ du joueur n'est pas pris en compte. Concernant le protocole, nous avons décidé de ne pas utiliser l'élément _chain_ lors de l'explosion de plusieurs bombes dues à une autre explosion.
 A la place, nous avons préféré renvoyer un message d'explosion au client. 
 
-__Architecture client :__
+## Lancer le projet
+
+Lancer _./server_ en ligne de commandes pour le serveur, et double cliquer sur run.bat pour lancer le client.
+
+## Architecture client
 
 Le menu et le jeu sont découpées selon le modèle _MVC_, les informations telles que les différents types de bombes, de bonus ou d'actions sont présents dans leur classe Enum respective. Une factory remaniée a été utilisée plusieurs fois, pour appeler par exemple une méthode de control ou de lecture json. Par exemple, recevoir l'action _position/update_ appellera les méthodes _readPositionUpdate_ et _controlPositionUpdate_, sans avoir besoin de passer par un if.
 Un singleton a été utilisé pour représenter les classes _GameHandler_, _JsonReader_, _JsonWriter_, et _SpriteLoader_.
 
-__Architecture server :__
+## Architecture server
 
 Le server peut être découpé en trois couches : La couche réseau avec les fichiers _servertcp_ et _serverudp_ qui permettent de dialoguer avec les clients, la couche de traitement avec les fichiers _answer_ et _convert_ qui permettent d'analyser les requêtes et de construire les réponses, et la couche logique qui va englober tous les fichiers qui stockent les données de jeu et réaliser les requêtes. Lors de la conception, seules les fonctions du fichier _main_ permettaient de faire la liaison entre ces couches, mais lors du développement il s'est avéré qu'il était nécessaire de lier la couche logique à la couche réseau via la structure correspondant au joueur.
 
-__Bugs côté client :__ 
+## Bugs côté client
 
 -Concernant les contrôles, ceux-ci sont un peu bugués : une touche peut être configurée plusieurs fois (entraine des erreurs durant la partie), et certaines touches comme les flèches directionnelles ne peuvent être affectées.
 
@@ -34,7 +39,7 @@ __Bugs côté client :__
 
 -Le protocole ne permet pas à un joueur d'avoir connaissance du fait qu'un autre joueur a ramassé un bonus. Nous aurions éventuellement pu corriger cela en vérifiant si le déplacement de tous les joueurs provoquaient un ramassage d'objet, mais dans tous les cas il est impossible de savoir depuis un client si les autres joueurs ont pu ramasser cet objet.
 
-__Bugs côté serveur :__ 
+## Bugs côté serveur
 
 -Lorsqu'un joueur marche sur une mine, il arrive parfois que la zone mémoire correspondante à cette mine soit libérée plusieurs fois après son explosion ce qui provoque une erreur.
 
